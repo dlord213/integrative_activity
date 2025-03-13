@@ -24,15 +24,15 @@
             <i class="fa-solid fa-user text-2xl dark:text-[#242424] dark:bg-[#fefefe] p-4 rounded-full cursor-pointer delay-0 duration-300 transition-all dark:hover:bg-[#efefef]"></i>
         </div>
         <div class="grid grid-cols-3 gap-4">
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>Today's sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>This week sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>This month sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>

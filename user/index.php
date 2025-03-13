@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body class="flex flex-row dark:bg-[#161616] lg:mx-auto dark:text-[#fefefe] min-h-screen">
+<body class="flex flex-row dark:bg-[#161616] lg:mx-auto dark:text-[#fefefe] text-[#242424] min-h-screen">
     <?php include("./components/sidebar.php") ?>
     <div class="flex flex-col basis-[80%] px-8 py-4 lg:max-w-5xl lg:mx-auto gap-4">
         <div class="flex flex-row justify-between items-center">
@@ -24,15 +24,15 @@
             <i class="fa-solid fa-user text-2xl dark:text-[#242424] dark:bg-[#fefefe] p-4 rounded-full cursor-pointer delay-0 duration-300 transition-all dark:hover:bg-[#efefef]"></i>
         </div>
         <div class="grid grid-cols-3 gap-4">
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>Today's sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>This week sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>
-            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2">
+            <div class="flex flex-col dark:bg-[#242424] rounded-xl px-4 py-12 gap-2 bg-[#fafafa] shadow dark:shadow-none">
                 <p>This month sales</p>
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>

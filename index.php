@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body class="flex flex-col lg:py-6 lg:px-0 p-6 dark:bg-[#161616] lg:max-w-5xl lg:mx-auto dark:text-[#fefefe] min-h-screen gap-4 justify-between">
+<body class="flex flex-col lg:py-6 lg:px-0 p-6 dark:bg-[#161616] lg:max-w-5xl lg:mx-auto dark:text-[#fefefe] text-[#242424] min-h-screen gap-4 justify-between">
     <div class="flex flex-row gap-4 justify-between items-center">
         <div class="flex flex-row gap-4">
             <a href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:hover:bg-[#484848] hover:bg-[#efefef] dark:shadow-none shadow">
@@ -30,12 +30,12 @@
         </div>
         <div class="flex flex-row gap-4">
             <div class="flex flex-row gap-4">
-                <a href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:hover:bg-[#484848] hover:bg-[#efefef] dark:shadow-none shadow">
+                <a href="./auth/login.php" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:hover:bg-[#484848] hover:bg-[#efefef] dark:shadow-none shadow">
                     <p>Login</p>
                 </a>
             </div>
             <div class="flex flex-row gap-4">
-                <a href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:hover:bg-[#484848] hover:bg-[#efefef] dark:shadow-none shadow">
+                <a href="./auth/register.php" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:hover:bg-[#484848] hover:bg-[#efefef] dark:shadow-none shadow">
                     <p>Register</p>
                 </a>
             </div>
