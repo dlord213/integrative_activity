@@ -20,31 +20,55 @@
     <?php include("../components/sidebar.php") ?>
     <div class="flex flex-col basis-[80%] px-8 py-4 lg:max-w-5xl lg:mx-auto gap-4">
         <div class="flex flex-row justify-between">
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <label for="default-search" class="mb-2 text-sm font-medium text-stone-900 sr-only dark:text-white">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-stone-500 dark:text-stone-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50 dark:bg-[#242424] dark:placeholder-gray-400 dark:text-white outline-none dark:shadow-none shadow" placeholder="Search" required />
+                <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-stone-900 rounded-lg bg-stone-50 dark:bg-[#242424] dark:placeholder-stone-400 dark:text-white outline-none dark:shadow-none shadow" placeholder="Search" required />
             </div>
         </div>
-        <div class="flex flex-row justify-between items-center">
-            <h1 class="lg:text-4xl font-black">Flowers</h1>
-            <div class="flex flex-row gap-4">
-                <a href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
-                    <i class="fa-solid fa-add "></i>
-                    <p>Add new flower</p>
-                </a>
+        <div class="grid grid-cols-[15vw_1fr] gap-6 relative">
+            <div class="flex flex-col gap-4 sticky top-4 h-screen min-h-screen">
+                <div class="flex flex-col gap-4 dark:bg-stone-800 p-4 rounded-2xl">
+                    <h1 class="text-4xl font-bold">Availability</h1>
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-stone-800 focus:ring-2 dark:bg-stone-700 dark:border-stone-600">
+                        <p class="">In stock (#)</p>
+                    </div>
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-stone-800 focus:ring-2 dark:bg-stone-700 dark:border-stone-600">
+                        <p class="">Out of stock (#)</p>
+                    </div>
+
+                </div>
+                <div class="flex flex-col gap-4 dark:bg-stone-800 p-4 rounded-2xl">
+                    <h1 class="text-4xl font-bold">Price</h1>
+                    <div class="flex flex-row gap-4">
+                        <div class="flex flex-col gap-2">
+                            <p class="">Min</p>
+                            <input type="text" id="minimum_price" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="Minimum" required />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="">Max</p>
+                            <input type="text" id="maximum_price" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="Maximum" required />
+                        </div>
+                    </div>
+                    <button type="button" class=" w-full bg-stone-700 text-white py-2 rounded-lg cursor-pointer dark:hover:bg-stone-600">Apply</button>
+                </div>
             </div>
-        </div>
-        <div class="flex flex-col h-full dark:bg-[#242424] bg-[#fafafa] rounded-xl dark:shadow-none shadow-md">
-            <div class=""></div>
-        </div>
-        <div class="flex flex-row gap-2 justify-end w-full">
-            <i class="fa-solid fa-arrow-left p-4 dark:bg-[#242424] rounded-xl cursor-pointer delay-0 duration-300 transition-all hover:dark:bg-[#363636] dark:shadow-none shadow"></i>
-            <i class="fa-solid fa-arrow-right p-4 dark:bg-[#242424] rounded-xl cursor-pointer delay-0 duration-300 transition-all hover:dark:bg-[#363636] dark:shadow-none shadow"></i>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-row justify-between items-center">
+                    <div class="flex flex-row gap-4">
+                        <i class="fa-solid fa-grid"></i>
+                        <i class="fa-solid fa-grip"></i>
+                    </div>
+                    <h1 class="text-xl font-bold">Showing 1 - 9 of result</h1>
+                </div>
+                <?php include("./flowers_pagination.php") ?>
+            </div>
         </div>
     </div>
 </body>

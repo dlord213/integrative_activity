@@ -1,3 +1,39 @@
+<?php
+include("../config.php");
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['user_type'] = $user['type'];
+
+            if ($user['type'] === 'admin') {
+                header("Location: ../admin/");
+            } else {
+                header("Location: ../user/");
+            }
+            exit();
+        } else {
+            $error = "Invalid password!";
+        }
+    } else {
+        $error = "No user found with that email!";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,17 +57,26 @@
         <img src="../../assets/logo.png" class="w-full h-full max-w-[64px] max-h-[64px] aspect-square dark:invert" />
         <h1 class="2xl:text-4xl text-2xl font-black">Fleur de Magazine</h1>
     </a>
-    <form class="flex flex-col gap-4">
+
+
+
+    <form action="login.php" method="POST" class="flex flex-col gap-4">
         <div class="flex flex-col gap-2">
             <p>Email</p>
-            <input type="email" id="email" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="johndoe@gmail.com" required />
+            <input type="email" name="email" id="email" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="johndoe@gmail.com" required />
         </div>
         <div class="flex flex-col gap-2">
             <p>Password</p>
-            <input type="password" id="password" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="********" required />
+            <input type="password" name="password" id="password" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="********" required />
         </div>
         <button type="submit" class="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800 cursor-pointer">Login</button>
     </form>
+    <!-- Display error message if any -->
+    <?php if (isset($error)): ?>
+        <div class="bg-red-500 text-white p-4 rounded-2xl">
+            <p><?php echo $error; ?></p>
+        </div>
+    <?php endif; ?>
     <div class="border-t border-stone-200 dark:border-stone-800 py-4 w-full flex flex-col">
         <a href="./register.php">Don't have an account?</a>
     </div>

@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['type']) == "admin") {
+    header("Location: ../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +48,15 @@
                 <h1 class="font-black text-4xl">₱XX,XXX</h1>
             </div>
         </div>
+        <?php include("./components/recent_orders.php") ?>
+        <?php include("./components/recent_user_registered.php") ?>
     </div>
+
+    <?php include("./components/dashboard_customer_modal.php") ?>
+    <?php include("./components/dashboard_order_modal.php") ?>
+
+
+
 </body>
 
 </html>

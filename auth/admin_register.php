@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (username, email, password, created_at, type) VALUES ('$username', '$email', '$hashed_password', NOW(), 'user')";
+    $sql = "INSERT INTO users (username, email, password, created_at, type) VALUES ('$username', '$email', '$hashed_password', NOW(), 'admin')";
 
     if ($conn->query($sql) === TRUE) {
         $user_id = $conn->insert_id;
@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        $_SESSION['user_type'] = 'user';
+        $_SESSION['user_type'] = 'admin';
 
-        header("Location: ../user/");
+        header("Location: ../admin/");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <img src="../../assets/logo.png" class="w-full h-full max-w-[64px] max-h-[64px] aspect-square dark:invert" />
         <h1 class="2xl:text-4xl text-2xl font-black">Fleur de Magazine</h1>
     </a>
-    <form action="register.php" method="POST" class="flex flex-col gap-4">
+    <form action="admin_register.php" method="POST" class="flex flex-col gap-4">
         <div class="flex flex-col gap-2">
             <p>Username</p>
             <input type="text" name="username" id="username" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500" placeholder="johndoe007" required />
