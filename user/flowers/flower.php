@@ -39,7 +39,7 @@ if (!$product) {
 <body class="flex flex-row dark:bg-[#161616] text-[#242424] lg:mx-auto dark:text-[#fefefe] min-h-screen">
     <?php include("../components/sidebar.php") ?>
     <div class="flex flex-col basis-[80%] px-8 py-4 lg:max-w-5xl lg:mx-auto gap-12">
-        <a href="" class="flex flex-row gap-4 items-center p-4 bg-stone-800 dark:bg-stone-700 w-fit rounded-4xl">
+        <a href="./index.php" class="flex flex-row gap-4 items-center p-4 bg-stone-800 dark:bg-stone-700 w-fit rounded-4xl">
             <i class="fa-solid fa-arrow-left"></i>
             <h1>Back</h1>
         </a>
@@ -56,8 +56,11 @@ if (!$product) {
                 <div class="flex flex-row gap-4">
                     <form action="order.php" method="POST">
                         <input type="hidden" name="product_id" value="<?= $product_id; ?>">
-                        <button type="submit" class="cursor-pointer flex flex-row gap-4 items-center px-6 py-4 rounded-4xl transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
-                            <i class="fa-solid fa-shopping-cart "></i>
+                        <button type="submit" <?= $product['quantity'] == 0 ? 'disabled' : ''; ?>
+                            class="cursor-pointer flex flex-row gap-4 items-center px-6 py-4 rounded-4xl transition-all delay-0 duration-300
+                dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow
+                <?= $product['quantity'] == 0 ? 'opacity-50 cursor-not-allowed' : ''; ?>">
+                            <i class="fa-solid fa-shopping-cart"></i>
                             <p>Order</p>
                         </button>
                     </form>

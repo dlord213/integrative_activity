@@ -40,67 +40,8 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
         <?php include("./components/user_recent_orders.php") ?>
-
     </div>
-    <div class="fixed inset-0 bg-black/75 hidden justify-center items-center z-50" id="orderModal">
-        <i class="fa-solid fa-arrow-close p-4 dark:bg-[#242424] rounded-xl cursor-pointer delay-0 duration-300 transition-all hover:dark:bg-[#363636] dark:shadow-none shadow"></i>
-        <div class="flex flex-col bg-stone-700 p-6 rounded-lg shadow-lg max-w-lg w-full gap-4">
-            <div class="flex flex-row gap-6 items-center">
-                <button onclick="closeModal(event)" class="cursor-pointer">
-                    <i class="fa-solid fa-close" class="w-[64px] aspect-square"></i>
-                </button>
-                <h1 class="text-4xl font-black">Order Details</h1>
-            </div>
-            <div class="flex flex-col gap-4">
-                <!-- Order Information -->
-                <div class="p-4 bg-stone-800 rounded-xl">
-                    <h2 class="text-xl font-semibold text-stone-300">Order ID:</h2>
-                    <p id="order_id" class="text-stone-400">#12345</p>
-                </div>
-                <div class="p-4 bg-stone-800 rounded-xl">
-                    <h2 class="text-xl font-semibold text-stone-300">Order Date:</h2>
-                    <p id="order_date" class="text-stone-400">2025-03-20 10:30:00</p>
-                </div>
-                <div class="p-4 bg-stone-800 rounded-xl">
-                    <h2 class="text-xl font-semibold text-stone-300">Status:</h2>
-                    <p id="order_status" class="text-stone-400">Pending</p>
-                </div>
-                <div class="p-4 bg-stone-800 rounded-xl">
-                    <h2 class="text-xl font-semibold text-stone-300">Shipping Address:</h2>
-                    <p id="shipping_address" class="text-stone-400">123 Main St, City, State</p>
-                </div>
-            </div>
-
-            <!-- Order Items -->
-            <div class="p-4 bg-stone-800 rounded-xl">
-                <h2 class="text-2xl font-semibold text-stone-300">Orders/items</h2>
-                <div class="flex flex-col gap-2">
-                    <!-- Example of order item, repeat for each item -->
-                    <div class="flex justify-between">
-                        <span class="text-stone-400">Flower Name</span>
-                        <span class="text-stone-400">x3</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Button to Close the Modal -->
-            <button type="button" class="w-full bg-stone-500 text-white py-2 rounded-lg cursor-pointer" onclick="closeModal(event)">Close</button>
-        </div>
-    </div>
-    <script>
-        function closeModal(event) {
-            event.preventDefault(); // Prevent any default form behavior (if inside a form)
-
-            const modal = document.getElementById("orderModal");
-            if (modal.classList.contains("hidden")) {
-                modal.classList.remove("hidden"); // Show modal
-                modal.classList.add("flex"); // Add flex to make it visible
-            } else {
-                modal.classList.add("hidden"); // Hide modal
-                modal.classList.remove("flex"); // Remove flex to hide it
-            }
-        }
-    </script>
+    <?php include("./components/dashboard_order_details.php") ?>
 </body>
 
 </html>

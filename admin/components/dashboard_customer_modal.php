@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <button type="button" class="w-full bg-stone-500 text-white py-2 rounded-lg cursor-pointer hover:bg-stone-600 transition" onclick="closeCustomerModal()">
+        <button type="button" class="cursor-pointer w-full bg-stone-500 text-white py-2 rounded-lg cursor-pointer hover:bg-stone-600 transition" onclick="closeCustomerModal()">
             Close
         </button>
     </div>

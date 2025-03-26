@@ -2,7 +2,7 @@
 
 include("../../config.php");
 
-$limit = 6;
+$limit = 9;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max($page, 1);
 $offset = ($page - 1) * $limit;
@@ -19,7 +19,7 @@ $sql = "SELECT product_id, name, price, image_url FROM products ORDER BY name AS
 $result = $conn->query($sql);
 ?>
 
-<div class="grid grid-cols-[1fr_1fr] gap-4">
+<div class="grid grid-cols-[1fr_1fr_1fr] gap-4">
     <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
             <a href="./flower.php?id=<?= htmlspecialchars($row['product_id']); ?>" class="flex flex-col rounded-lg p-4 dark:bg-stone-800 items-center dark:hover:bg-stone-600 cursor-pointer transition-all delay-0 duration-300">

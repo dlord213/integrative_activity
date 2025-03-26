@@ -3,12 +3,13 @@ include("../config.php");
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT orders.order_id, orders.created_at, orders.status, products.name, products.image_url
+$sql = "SELECT orders.order_id, orders.created_at, orders.status, products.name, products.image_url, users.address
         FROM orders
         JOIN products ON orders.product_id = products.product_id
+        JOIN users ON orders.user_id = users.user_id
         WHERE orders.user_id = ?
         ORDER BY orders.created_at DESC
-        LIMIT 5";
+        LIMIT 3";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -23,9 +24,7 @@ $result = $stmt->get_result();
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="flex flex-row justify-between dark:bg-[#484848] rounded-xl items-center p-4">
                     <div class="flex flex-row gap-4">
-                        <div class="w-[64px] aspect-square dark:bg-[#969696] rounded-full overflow-hidden">
-                            <img src="<?= htmlspecialchars($row['image']); ?>" alt="<?= htmlspecialchars($row['name']); ?>" class="w-full h-full object-cover">
-                        </div>
+                        <img src="<?= htmlspecialchars($row['image_url']); ?>" alt="<?= htmlspecialchars($row['name']); ?>" class="w-[64px] aspect-square object-contain">
                         <div class="flex flex-col">
                             <h1 class="text-lg font-bold"><?= htmlspecialchars($row['name']); ?></h1>
                             <h1 class="">Order #<?= htmlspecialchars($row['order_id']); ?></h1>
@@ -33,7 +32,14 @@ $result = $stmt->get_result();
                             <h1 class="">Created on <?= date('M d, Y', strtotime($row['created_at'])); ?></h1>
                         </div>
                     </div>
-                    <button type="button" onclick="closeModal(event)" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
+                    <button type="button" onclick="toggleModal({
+                        id: '<?= $row['order_id'] ?>',
+                        date: '<?= date('M d, Y', strtotime($row['created_at'])) ?>',
+                        status: '<?= ucfirst($row['status']) ?>',
+                        address: '<?= htmlspecialchars($row['address']) ?>',
+                        item: { name: '<?= htmlspecialchars($row['name']) ?>' }
+                    })"
+                        class="cursor-pointer flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
                         <i class="fa-solid fa-eye"></i>
                         <p>View</p>
                     </button>

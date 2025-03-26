@@ -6,7 +6,7 @@
             <h1 class="">Quantity #</h1>
         </div>
     </div>
-    <button type="button" onclick="closeModal(event)" href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
+    <button type="button" onclick="closeModal(event)" href="" class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow cursor-pointer ">
         <i class="fa-solid fa-add "></i>
         <p>Manage</p>
     </button>
