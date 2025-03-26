@@ -1,3 +1,22 @@
+<?php
+
+include("../config.php");
+$product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Fetch product details from the database
+$sql = "SELECT name, description, price, image_url, quantity FROM products WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$product = $result->fetch_assoc();
+
+if (!$product) {
+    header("Location: products.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,32 +60,29 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-[1fr_1fr] gap-8">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3vBCi9FZ5K0LbNe8h4yVdMuymxzjMquaZoA&s" class="w-full aspect-square rounded-lg" />
-        <div class="flex flex-col items-start justify-end gap-4">
-            <h1 class="text-6xl font-black">Flower Name</h1>
-            <p class="text-sm text-stone-300">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            <h1 class="text-4xl font-bold text-amber-400">$99.99</h1>
-            <div class="flex flex-col gap-2">
-                <p class="text-stone-500">Quantity</p>
-                <div class="flex flex-row gap-4 items-center">
-                    <i class="fa-solid fa-minus px-6 py-4 rounded-xl dark:bg-stone-700"></i>
-                    <h1 class="text-2xl">0</h1>
-                    <i class="fa-solid fa-add px-6 py-4 rounded-xl dark:bg-stone-700"></i>
+    <div class="flex flex-col basis-[80%] px-8 py-4 lg:max-w-5xl lg:mx-auto gap-12">
+        <div class="grid grid-cols-[1fr_1fr] gap-8">
+            <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="w-full aspect-square object-contain rounded-lg" />
+            <div class="flex flex-col items-start justify-end gap-4">
+                <h1 class="text-6xl font-black"><?= htmlspecialchars($product['name']); ?></h1>
+                <p class="text-sm text-stone-300"><?= htmlspecialchars($product['description']); ?></p>
+                <h1 class="text-4xl font-bold text-amber-400">$<?= number_format($product['price'], 2); ?></h1>
+                <div class="flex flex-col gap-2">
+                    <p class="text-stone-500">Available</p>
+                    <h1 class="text-2xl px-8 py-2 bg-stone-700 rounded-4xl"><?= $product['quantity']; ?></h1>
                 </div>
-            </div>
-            <div class="flex flex-row gap-4">
-                <a href="../orders" class="flex flex-row gap-4 items-center px-6 py-4 rounded-4xl transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
-                    <i class="fa-solid fa-shopping-cart "></i>
-                    <p>Checkout</p>
-                </a> <a href="../orders" class="flex flex-row gap-4 items-center px-6 py-4 rounded-4xl transition-all delay-0 duration-300 border dark:border-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
-                    <i class="fa-solid fa-add "></i>
-                    <p>Add to wishlist</p>
-                </a>
+                <div class="flex flex-row gap-4">
+                    <a href="../auth/login.php" <?= $product['quantity'] == 0 ? 'disabled' : ''; ?>
+                        class="cursor-pointer flex flex-row gap-4 items-center px-6 py-4 rounded-4xl transition-all delay-0 duration-300
+                dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow
+                <?= $product['quantity'] == 0 ? 'opacity-50 cursor-not-allowed' : ''; ?>">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <p>Order</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

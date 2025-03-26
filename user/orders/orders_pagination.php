@@ -36,14 +36,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col dark:bg-[#242424] bg-[#fafafa] rounded-xl dark:shadow-none shadow-md gap-4 p-4">
     <?php while ($row = $result->fetch_assoc()) { ?>
-        <div class="flex flex-col dark:bg-[#242424] bg-[#fafafa] rounded-xl dark:shadow-none shadow-md gap-4 p-4">
+        <div class="flex flex-col ">
             <div class="flex flex-row justify-between dark:bg-[#484848] rounded-xl items-center p-4">
                 <div class="flex flex-row gap-4">
                     <img src="<?php echo htmlspecialchars($row['image_url']); ?>"
                         alt="<?php echo htmlspecialchars($row['name']); ?>"
-                        class="w-[64px] aspect-square dark:bg-[#969696] rounded-full object-contain" />
+                        class="w-[64px] aspect-square rounded-full object-contain" />
                     <div class="flex flex-col">
                         <h1 class="text-lg font-bold"><?= htmlspecialchars($row['name']) ?></h1>
                         <h1 class="">Order #<?= htmlspecialchars($row['order_id']) ?></h1>
@@ -59,7 +59,7 @@ $result = $stmt->get_result();
         { name: '<?= $row['name'] ?>', quantity: 3 } // Adjust as needed
     ] 
 })"
-                    class="flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
+                    class="cursor-pointer flex flex-row gap-4 items-center px-6 py-4 rounded-md transition-all delay-0 duration-300 dark:bg-[#363636] dark:hover:bg-[#484848] hover:bg-[#efefef] shadow">
                     <i class="fa-solid fa-eye"></i>
                     <p>View</p>
                 </button>
